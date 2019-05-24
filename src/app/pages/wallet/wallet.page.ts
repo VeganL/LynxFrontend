@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WalletPage implements OnInit {
 
+  profiles = [
+    {
+      name: 'Name Mlast',
+    },
+    {
+      name: 'Name Haha',
+    },
+    {
+      name: 'Name baba',
+    }
+  ];
+
   constructor() { }
 
   ngOnInit() {
