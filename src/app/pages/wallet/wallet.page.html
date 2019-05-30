@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar placeholder="Search your Account"></ion-searchbar>
 
     <ion-buttons slot="end">
       <ion-button (click)="openCreateProfileModal()">
@@ -20,10 +20,19 @@
 
 <ion-content>
 
-  <ng-container *ngFor="let profile of profiles">
-    <ion-card>
-      <p>{{profile.name}}</p>
-    </ion-card>
-  </ng-container>
+    <div class="card-container">
+        <ion-card *ngFor="let profile of profiles">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name={{profile.icon}}></ion-icon>
+                </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                <h2>{{profile.name}}</h2>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
 
 </ion-content>
