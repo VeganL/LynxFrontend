@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileListPage implements OnInit {
 
+  profileCards = [
+    {
+      name: 'Name M Last',
+    },
+    {
+      name: 'Name Haha',
+    },
+    {
+      name: 'Name baba',
+    }
+  ];
+
   constructor() { }
 
   ngOnInit() {
