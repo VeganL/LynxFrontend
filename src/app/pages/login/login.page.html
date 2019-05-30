@@ -1,0 +1,16 @@
+<ion-content padding>
+  <ion-img src="../../assets/lynxLogo.png"></ion-img>
+
+  <form class="login-form">
+    <ion-input [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
+
+    <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
+
+    <ion-button style="margin-top: 30px" expand="block" shape="round" color="primary" (click)="login()">
+      Login
+    </ion-button>
+  </form>
+
+  <ion-button expand="block" fill="clear" color="medium">Or Create an Account</ion-button>
+
+</ion-content>
