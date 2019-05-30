@@ -13,7 +13,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pages/wallet/wallet.module#WalletPageModule'
-          }
+          },
+          {
+            path: 'profile-list',
+            loadChildren: '../pages/profile-list/profile-list.module#ProfileListPageModule'
+          },
         ]
       },
       {
