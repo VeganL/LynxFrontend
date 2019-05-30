@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-profile-list',
@@ -19,9 +20,13 @@ export class ProfileListPage implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private navController: NavController) { }
 
   ngOnInit() {
+  }
+
+  details() {
+    this.navController.navigateRoot('/tabs/wallet/profile-list/card-detail');
   }
 
 }

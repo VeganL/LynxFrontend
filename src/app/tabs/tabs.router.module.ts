@@ -16,7 +16,16 @@ const routes: Routes = [
           },
           {
             path: 'profile-list',
-            loadChildren: '../pages/profile-list/profile-list.module#ProfileListPageModule'
+            children: [
+              {
+                path: '',
+                loadChildren: '../pages/profile-list/profile-list.module#ProfileListPageModule',
+              },
+              {
+                path: 'card-detail',
+                loadChildren: '../pages/card-detail/card-detail.module#CardDetailPageModule',
+              },
+            ]
           },
         ]
       },
