@@ -7,80 +7,81 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="saveModal()">
         Save
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
 
-  <ion-item>
-    <ion-label position="floating">Profile Name</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Profile Name</ion-label>
+      <ion-input [(ngModel)]="profile"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Select Icon</ion-label>
-    <ion-select placeholder="Select One">
-      <ion-select-option value="f">briefcase</ion-select-option>
-      <ion-select-option value="m">art palette</ion-select-option>
-      <ion-select-option value="m">person</ion-select-option>
-      <ion-select-option value="m">professional</ion-select-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label>Select Icon</ion-label>
+      <ion-select [(ngModel)]="select" placeholder="Select One">
+        <ion-select-option value="briefcase">briefcase</ion-select-option>
+        <ion-select-option value="palette">art palette</ion-select-option>
+        <ion-select-option value="person">person</ion-select-option>
+        <ion-select-option value="professional">professional</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Your Name</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">Your Name</ion-label>
+      <ion-input [(ngModel)]="name"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Title</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input [(ngModel)]="title"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-icon name="mail" slot="start"></ion-icon>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  </ion-list>
 
-  <ion-item>
-    <ion-icon name="call" slot="start"></ion-icon>
-    <ion-label position="floating">Phone Number</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
 
-  <ion-item>
-    <ion-icon name="home" slot="start"></ion-icon>
-    <ion-label position="floating">Address</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-icon name="link" slot="start"></ion-icon>
-    <ion-label position="floating">Website</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="phone" placeholder="Phone"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-icon name="logo-snapchat" slot="start"></ion-icon>
-    <ion-label position="floating">Snapchat</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="address" placeholder="Address"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-icon name="logo-linkedin" slot="start"></ion-icon>
-    <ion-label position="floating">LinkedIn</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-icon name="link" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="website" placeholder="Website URL"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-icon name="logo-facebook" slot="start"></ion-icon>
-    <ion-label position="floating">Facebook</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-icon name="logo-snapchat" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="snapchat" placeholder="Snapchat"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="logo-linkedin" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="linkedIn" placeholder="LinkedIn"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="logo-facebook" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="facebook" placeholder="Facebook"></ion-input>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
