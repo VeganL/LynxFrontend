@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-card-detail',
@@ -12,9 +13,13 @@ export class CardDetailPage implements OnInit {
   home = '123 Street, City, State, Country, ZipCode'
   website = 'www.mywebbie.com'
 
-  constructor() { }
+  constructor(private navController: NavController) { }
 
   ngOnInit() {
+  }
+
+  back() {
+    this.navController.navigateRoot('/tabs/wallet/profile-list');
   }
 
 }
