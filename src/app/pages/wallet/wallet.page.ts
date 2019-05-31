@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavController} from '@ionic/angular';
 import {CreateProfilePage} from '../../modals/create-profile/create-profile.page';
+import {UserDataService} from "../../services/user-data/user-data.service";
 
 @Component({
   selector: 'app-wallet',
@@ -9,21 +10,17 @@ import {CreateProfilePage} from '../../modals/create-profile/create-profile.page
 })
 export class WalletPage implements OnInit {
 
-  profiles = [
-    {
-      name: 'Name M Last',
-    },
-    {
-      name: 'Name Haha',
-    },
-    {
-      name: 'Name baba',
-    }
-  ];
+  profiles: any;
 
-  constructor(private navController: NavController, private modalController: ModalController) { }
+  constructor(
+      private navController: NavController,
+      private modalController: ModalController,
+      private userDataService: UserDataService
+  ) { }
 
   ngOnInit() {
+    this.profiles = this.userDataService.getUserData().profiles;
+    console.log('Profile', this.profiles);
   }
 
   async openCreateProfileModal(){
