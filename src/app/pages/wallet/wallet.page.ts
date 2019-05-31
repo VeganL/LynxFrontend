@@ -10,13 +10,20 @@ export class WalletPage implements OnInit {
 
   profileCards = [
     {
-      name: 'Name M Last',
+      icon: 'person',
+      name: 'Personal',
     },
     {
-      name: 'Name Haha',
+      icon: 'bowtie',
+      name: 'Professional',
     },
     {
-      name: 'Name baba',
+      icon: 'color-palette',
+      name: 'Art',
+    },
+    {
+      icon: 'briefcase',
+      name: 'Work'
     }
   ];
 
