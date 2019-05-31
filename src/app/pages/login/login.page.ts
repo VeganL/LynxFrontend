@@ -11,8 +11,8 @@ import { AuthServiceService } from '../../services/auth-service/auth-service.ser
 })
 export class LoginPage implements OnInit {
 
-  username: string;
-  password: string;
+  username = 'VeganL';
+  password = 'fourwordsalluppercasE';
 
   constructor(
       private navController: NavController,

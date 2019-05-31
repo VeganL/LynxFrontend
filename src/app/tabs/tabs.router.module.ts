@@ -26,7 +26,7 @@ const routes: Routes = [
                 loadChildren: '../pages/card-detail/card-detail.module#CardDetailPageModule',
               },
               { path: 'accept-detail',
-                loadChildren: './pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
+                loadChildren: '../pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
               },
 
             ]

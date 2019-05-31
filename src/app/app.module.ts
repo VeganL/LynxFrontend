@@ -15,6 +15,8 @@ import {CreateProfilePageModule} from './modals/create-profile/create-profile.mo
 // Services
 import { AuthServiceService } from './services/auth-service/auth-service.service';
 
+// Plugins
+import { HTTP } from '@ionic-native/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,7 @@ import { AuthServiceService } from './services/auth-service/auth-service.service
     StatusBar,
     SplashScreen,
     AuthServiceService,
+    HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
