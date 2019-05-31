@@ -75,6 +75,11 @@ export class CreateProfilePage implements OnInit {
 
   displayField(field) {
     console.log('Clicked!!');
+
+    if (this.modalType === 'createProfile') {
+      return;
+    }
+
     if (field === 'email') {
       this.email.display = (!this.email.display);
     } else if (field === 'phone') {
