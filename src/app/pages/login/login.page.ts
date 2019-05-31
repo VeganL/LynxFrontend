@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
+import { AuthServiceService } from '../../services/auth-service/auth-service.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,14 +14,20 @@ export class LoginPage implements OnInit {
   username: string;
   password: string;
 
-  constructor(private navController: NavController) { }
+  constructor(
+      private navController: NavController,
+      private authServiceService: AuthServiceService
+  ) { }
 
   ngOnInit() {
   }
 
   login() {
     console.log(this.username, this.password);
-    this.navController.navigateRoot('/tabs/wallet');
+
+    this.authServiceService.authentication(this.username, this.password);
+
+    // this.navController.navigateRoot('/tabs/wallet');
   }
 
 }
