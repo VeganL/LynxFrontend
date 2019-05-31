@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
             this.userDataService.setUserData(data);
 
           console.log('User Data', data);
-          this.navController.navigateRoot('/tabs/wallet');
+          this.navController.navigateRoot('/tabs/profiles');
 
         },
         (err) => {

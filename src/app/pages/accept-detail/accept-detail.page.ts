@@ -19,6 +19,6 @@ export class AcceptDetailPage implements OnInit {
   }
 
   wallet(){
-    this.navController.navigateRoot('/tabs/wallet/profile-list');
+    this.navController.navigateRoot('/tabs/profiles/profile-list');
   }
 }

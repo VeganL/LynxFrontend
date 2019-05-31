@@ -19,7 +19,7 @@ export class CardDetailPage implements OnInit {
   }
 
   back() {
-    this.navController.navigateRoot('/tabs/wallet/profile-list');
+    this.navController.navigateRoot('/tabs/profiles/profile-list');
   }
 
 }

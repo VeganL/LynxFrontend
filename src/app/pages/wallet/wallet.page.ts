@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController, NavController} from '@ionic/angular';
-import {CreateProfilePage} from '../../modals/create-profile/create-profile.page';
-import {UserDataService} from "../../services/user-data/user-data.service";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-wallet',
@@ -10,32 +8,25 @@ import {UserDataService} from "../../services/user-data/user-data.service";
 })
 export class WalletPage implements OnInit {
 
-  profiles: any;
+  profileCards = [
+    {
+      name: 'Name M Last',
+    },
+    {
+      name: 'Name Haha',
+    },
+    {
+      name: 'Name baba',
+    }
+  ];
 
-  constructor(
-      private navController: NavController,
-      private modalController: ModalController,
-      private userDataService: UserDataService
-  ) { }
+  constructor(private navController: NavController) { }
 
   ngOnInit() {
-    this.profiles = this.userDataService.getUserData().profiles;
-    console.log('Profile', this.profiles);
   }
 
-  async openCreateProfileModal(){
-    const modal = await this.modalController.create({
-      component: CreateProfilePage,
-      componentProps: {
-        type: 'createProfile'
-      }
-    });
-
-    return await modal.present();
-  }
-
-  logout() {
-    this.navController.navigateRoot('/login');
+  details() {
+    this.navController.navigateForward('/tabs/profiles/profile-list/accept-detail');
   }
 
 }

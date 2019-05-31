@@ -1,0 +1,29 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-searchbar></ion-searchbar>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="openCreateProfileModal()">
+        <ion-icon slot="icon-only" name="add-circle" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ng-container *ngFor="let profile of profiles">
+    <ion-card>
+      <p>{{profile.profile_name}}</p>
+    </ion-card>
+  </ng-container>
+
+</ion-content>

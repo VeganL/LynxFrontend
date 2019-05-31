@@ -26,7 +26,7 @@ export class ProfileListPage implements OnInit {
   }
 
   details() {
-    this.navController.navigateRoot('/tabs/wallet/profile-list/card-detail');
+    this.navController.navigateForward('/tabs/profiles/profile-list/card-detail');
   }
 
 }

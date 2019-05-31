@@ -8,11 +8,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'wallet',
+        path: 'profiles',
         children: [
           {
             path: '',
-            loadChildren: '../pages/wallet/wallet.module#WalletPageModule'
+            loadChildren: '../pages/profiles/profiles.module#WalletPageModule'
           },
           {
             path: 'profile-list',
@@ -43,15 +43,24 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'wallet',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/wallet/wallet.module#WalletPageModule'
+          }
+        ]
+      },
+      {
         path: '',
-        redirectTo: '/tabs/wallet',
+        redirectTo: '/tabs/profiles',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/wallet',
+    redirectTo: '/tabs/profiles',
     pathMatch: 'full'
   }
 ];
