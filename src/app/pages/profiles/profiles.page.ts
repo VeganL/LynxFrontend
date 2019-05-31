@@ -10,7 +10,11 @@ import {UserDataService} from "../../services/user-data/user-data.service";
 })
 export class ProfilesPage implements OnInit {
 
+  searchVar: string;
+
   profiles: any;
+
+  profileSearch = []
 
   constructor(
       private navController: NavController,
@@ -21,6 +25,11 @@ export class ProfilesPage implements OnInit {
   ngOnInit() {
     this.profiles = this.userDataService.getUserData().profiles;
     console.log('Profile', this.profiles);
+    this.initializeProfiles();
+  }
+
+  initializeProfiles() {
+    this.profileSearch = this.profiles
   }
 
   async openCreateProfileModal(){
@@ -40,6 +49,15 @@ export class ProfilesPage implements OnInit {
 
   details(profileId) {
     this.navController.navigateForward('/tabs/profiles/profile-list/' + profileId);
+  }
+
+  searchbar() {
+    this.initializeProfiles();
+
+    console.log(this.searchVar);
+    this.profileSearch = this.profileSearch.filter((card) => {
+      return card.profile_name.toLocaleLowerCase().indexOf(this.searchVar.toLocaleLowerCase()) > -1;
+    });
   }
 
 }
