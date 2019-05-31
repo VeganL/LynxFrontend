@@ -38,4 +38,8 @@ export class ProfilesPage implements OnInit {
     this.navController.navigateRoot('/login');
   }
 
+  details(profileId) {
+    this.navController.navigateForward('/tabs/profiles/profile-list/' + profileId);
+  }
+
 }
