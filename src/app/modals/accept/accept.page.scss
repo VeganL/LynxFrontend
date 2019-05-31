@@ -1,0 +1,25 @@
+.page-header {
+  text-align: center;
+
+  img {
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+  }
+}
+
+.accept-button{
+  background-color: var(--ion-color-success-tint);
+  border-radius: 8px;
+  color: white;
+}
+
+.decline-button{
+  background-color: var(--ion-color-danger-tint);
+  border-radius: 8px;
+  color: white;
+}
+
+.buttons{
+  text-align: center;
+}

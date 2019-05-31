@@ -1,0 +1,66 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="page-header">
+    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    <h1>First Name</h1>
+  </div>
+
+  <ion-list padding>
+    <ion-item>
+      <ion-label>
+        {{email}}
+      </ion-label>
+      <ion-icon name="mail" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        {{phone}}
+      </ion-label>
+      <ion-icon name="call" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        {{home}}
+      </ion-label>
+      <ion-icon name="home" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        {{website}}
+      </ion-label>
+      <ion-icon name="link" slot="start"></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-item padding>
+    <ion-grid class="buttons">
+      <ion-row>
+        <ion-col>
+          <ion-button class="accept-button" shape="round" fill="clear" (click)="wallet()">
+            Accept
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="decline-button" shape="round" fill="clear" (click)="wallet()">
+            Decline
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+</ion-content>
