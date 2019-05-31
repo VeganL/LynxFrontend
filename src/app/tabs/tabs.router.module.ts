@@ -8,12 +8,29 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'wallet',
+        path: 'profiles',
         children: [
           {
             path: '',
-            loadChildren: '../pages/wallet/wallet.module#WalletPageModule'
-          }
+            loadChildren: '../pages/profiles/profiles.module#ProfilesPageModule'
+          },
+          {
+            path: 'profile-list',
+            children: [
+              {
+                path: '',
+                loadChildren: '../pages/profile-list/profile-list.module#ProfileListPageModule',
+              },
+              {
+                path: 'card-detail',
+                loadChildren: '../pages/card-detail/card-detail.module#CardDetailPageModule',
+              },
+              { path: 'accept-detail',
+                loadChildren: '../pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
+              },
+
+            ]
+          },
         ]
       },
       {
@@ -26,15 +43,24 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'wallet',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pages/wallet/wallet.module#WalletPageModule'
+          }
+        ]
+      },
+      {
         path: '',
-        redirectTo: '/tabs/wallet',
+        redirectTo: '/tabs/profiles',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/wallet',
+    redirectTo: '/tabs/profiles',
     pathMatch: 'full'
   }
 ];
