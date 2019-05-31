@@ -30,6 +30,7 @@ export class WalletPage implements OnInit {
     const modal = await this.modalController.create({
       component: CreateProfilePage,
       componentProps: {
+        type: 'createProfile'
       }
     });
 

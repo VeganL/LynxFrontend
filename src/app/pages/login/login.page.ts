@@ -25,9 +25,9 @@ export class LoginPage implements OnInit {
   login() {
     console.log(this.username, this.password);
 
-    this.authServiceService.authentication(this.username, this.password);
+    // this.authServiceService.authentication(this.username, this.password);
 
-    // this.navController.navigateRoot('/tabs/wallet');
+    this.navController.navigateRoot('/tabs/wallet');
   }
 
 }

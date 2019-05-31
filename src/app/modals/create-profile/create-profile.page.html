@@ -6,8 +6,13 @@
         Close
       </ion-button>
     </ion-buttons>
+
     <ion-buttons slot="end">
-      <ion-button (click)="saveModal()">
+      <ion-button *ngIf="modalType === 'createProfile'" (click)="saveCreateProfile()">
+        Save
+      </ion-button>
+
+      <ion-button *ngIf="modalType === 'createCard'" (click)="saveCreateCard()">
         Save
       </ion-button>
     </ion-buttons>
@@ -19,12 +24,12 @@
 <ion-content>
 
   <ion-list>
-    <ion-item>
+    <ion-item *ngIf="modalType === 'createProfile'">
       <ion-label position="floating">Profile Name</ion-label>
       <ion-input [(ngModel)]="profile"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="modalType === 'createProfile'">
       <ion-label>Select Icon</ion-label>
       <ion-select [(ngModel)]="select" placeholder="Select One">
         <ion-select-option value="briefcase">briefcase</ion-select-option>
@@ -49,38 +54,45 @@
 
   <ion-list>
     <ion-item>
-      <ion-icon name="mail" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+      <ion-icon *ngIf="email.display" (click)="displayField('email')" name="mail" slot="start"></ion-icon>
+      <ion-icon *ngIf="!email.display" (click)="displayField('email')" color="medium" name="mail" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="email.value" placeholder="Email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="call" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="phone" placeholder="Phone"></ion-input>
+      <ion-icon *ngIf="phone.display" (click)="displayField('phone')" name="call" slot="start"></ion-icon>
+      <ion-icon *ngIf="!phone.display" (click)="displayField('phone')" color="medium" name="call" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="phone.value" placeholder="Phone"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="address" placeholder="Address"></ion-input>
+      <ion-icon *ngIf="address.display" (click)="displayField('address')" name="home" slot="start"></ion-icon>
+      <ion-icon *ngIf="!address.display" (click)="displayField('address')" color="medium" name="home" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="address.value" placeholder="Address"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="link" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="website" placeholder="Website URL"></ion-input>
+      <ion-icon *ngIf="website.display" (click)="displayField('website')" name="link" slot="start"></ion-icon>
+      <ion-icon *ngIf="!website.display" (click)="displayField('website')" color="medium" name="link" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="website.value" placeholder="Website URL"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="logo-snapchat" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="snapchat" placeholder="Snapchat"></ion-input>
+      <ion-icon *ngIf="snapchat.display" (click)="displayField('snapchat')" name="logo-snapchat" slot="start"></ion-icon>
+      <ion-icon *ngIf="!snapchat.display" (click)="displayField('snapchat')" color="medium" name="logo-snapchat" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="snapchat.value" placeholder="Snapchat"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="logo-linkedin" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="linkedIn" placeholder="LinkedIn"></ion-input>
+      <ion-icon *ngIf="linkedIn.display" (click)="displayField('linkedIn')" name="logo-linkedin" slot="start"></ion-icon>
+      <ion-icon *ngIf="!linkedIn.display" (click)="displayField('linkedIn')" color="medium" name="logo-linkedin" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="linkedIn.value" placeholder="LinkedIn"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="logo-facebook" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="facebook" placeholder="Facebook"></ion-input>
+      <ion-icon *ngIf="facebook.display" (click)="displayField('facebook')" name="logo-facebook" slot="start"></ion-icon>
+      <ion-icon *ngIf="!facebook.display" (click)="displayField('facebook')" color="medium" name="logo-facebook" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="facebook.value" placeholder="Facebook"></ion-input>
     </ion-item>
   </ion-list>
 
