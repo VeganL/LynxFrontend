@@ -8,7 +8,7 @@ import {UserDataService} from "../../services/user-data/user-data.service";
   templateUrl: './profiles.page.html',
   styleUrls: ['./profiles.page.scss'],
 })
-export class WalletPage implements OnInit {
+export class ProfilesPage implements OnInit {
 
   profiles: any;
 

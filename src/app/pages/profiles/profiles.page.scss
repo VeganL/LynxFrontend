@@ -6,3 +6,21 @@ ion-searchbar{
 ion-toolbar {
   --ion-color-contrast: #000 !important;
 }
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 60%;
+
+  ion-card {
+    width: 40%;
+    text-align: center;
+
+    ion-card-title {
+      ion-icon {
+        font-size: 4rem;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/profiles/profiles.module#WalletPageModule'
+            loadChildren: '../pages/profiles/profiles.module#ProfilesPageModule'
           },
           {
             path: 'profile-list',
