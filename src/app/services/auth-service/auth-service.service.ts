@@ -29,6 +29,7 @@ export class AuthServiceService {
       this.http.post(this.url, body, headers).then(
           (success) => {
             if (success.status === 200) {
+              console.log(success);
               const data = JSON.parse(success.data);
 
               if (data.err) {
