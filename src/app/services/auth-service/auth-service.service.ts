@@ -13,25 +13,36 @@ export class AuthServiceService {
   constructor(private http: HTTP) { }
 
 
-  authentication(userName, pass) {
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    };
+  authentication(userName, pass): Promise<{}> {
 
-    const body = {
-      type: 'login',
-      username: userName,
-      password: pass
-    };
+    return new Promise<{}>((resolve, reject) => {
+      const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
 
-    this.http.post(this.url, body, headers).then(
-        (success) => {
-          console.log('Success', success);
-        },
-        (err) => {
-          console.error(err);
-        }
-    );
+      const body = {
+        type: 'login',
+        username: userName,
+        password: pass
+      };
+
+      this.http.post(this.url, body, headers).then(
+          (success) => {
+            if (success.status === 200) {
+              const data = JSON.parse(success.data);
+
+              if (data.err) {
+                reject(data.err);
+              } else {
+                resolve(data);
+              }
+            }
+          },
+          (err) => {
+            console.error(err);
+          }
+      );
+    });
   }
 
 }

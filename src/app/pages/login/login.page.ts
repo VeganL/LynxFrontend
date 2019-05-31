@@ -12,7 +12,7 @@ import { AuthServiceService } from '../../services/auth-service/auth-service.ser
 export class LoginPage implements OnInit {
 
   username = 'VeganL';
-  password = 'fourwordsalluppercasE';
+  password = 'fourwordsalluppercase';
 
   constructor(
       private navController: NavController,
@@ -25,9 +25,17 @@ export class LoginPage implements OnInit {
   login() {
     console.log(this.username, this.password);
 
-    // this.authServiceService.authentication(this.username, this.password);
+    this.authServiceService.authentication(this.username, this.password).then(
+        (data) => {
 
-    this.navController.navigateRoot('/tabs/wallet');
+          console.log('User Data', data);
+          this.navController.navigateRoot('/tabs/wallet');
+
+        },
+        (err) => {
+
+        }
+    );
   }
 
 }
