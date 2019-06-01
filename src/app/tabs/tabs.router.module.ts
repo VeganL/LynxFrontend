@@ -15,20 +15,19 @@ const routes: Routes = [
             loadChildren: '../pages/profiles/profiles.module#ProfilesPageModule'
           },
           {
+            path: 'card-detail',
+            loadChildren: '../pages/card-detail/card-detail.module#CardDetailPageModule',
+          },
+          { path: 'accept-detail',
+            loadChildren: '../pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
+          },
+          {
             path: 'profile-list/:profile-id',
             children: [
               {
                 path: '',
                 loadChildren: '../pages/profile-list/profile-list.module#ProfileListPageModule',
               },
-              {
-                path: 'card-detail',
-                loadChildren: '../pages/card-detail/card-detail.module#CardDetailPageModule',
-              },
-              { path: 'accept-detail',
-                loadChildren: '../pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
-              },
-
             ]
           },
         ]
