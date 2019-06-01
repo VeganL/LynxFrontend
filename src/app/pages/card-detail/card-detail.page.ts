@@ -17,9 +17,4 @@ export class CardDetailPage implements OnInit {
 
   ngOnInit() {
   }
-
-  back() {
-    this.navController.navigateRoot('/tabs/profiles/profile-list');
-  }
-
 }
