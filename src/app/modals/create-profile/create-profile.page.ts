@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController, NavParams} from '@ionic/angular';
+import {ModalController, NavParams, AlertController} from '@ionic/angular';
+import {ProfileService} from '../../services/profile/profile.service';
+import {UserDataService} from '../../services/user-data/user-data.service';
+
 
 @Component({
   selector: 'app-create-profile',
@@ -10,8 +13,8 @@ export class CreateProfilePage implements OnInit {
 
   modalType: string;
 
-  profile: string;
-  select = [];
+  profileName: string;
+  iconName = [];
   name: string;
   title: string;
   email = {
@@ -45,13 +48,15 @@ export class CreateProfilePage implements OnInit {
 
   constructor(
       private modalController: ModalController,
-      private navParams: NavParams
+      private navParams: NavParams,
+      private profileService: ProfileService,
+      private userDataService: UserDataService,
+      public alertController: AlertController
   ) {
     this.modalType = this.navParams.get('type');
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 
   closeModal() {
@@ -62,9 +67,30 @@ export class CreateProfilePage implements OnInit {
 
   saveCreateProfile() {
     console.log('Save Profile');
-    console.log(this.profile, this.select, this.name, this.title,
+    console.log(this.profileName, this.iconName, this.name, this.title,
         this.email, this.phone, this.address, this.website,
         this.snapchat, this.linkedIn, this.facebook);
+
+    const accountId = this.userDataService.getUserData().account_id;
+    const attributes = {
+      icon_name: this.iconName[0],
+      name: this.name,
+      title: this.title,
+      email: this.email,
+      phone: this.phone,
+      website: this.website,
+      snapchat: this.snapchat,
+      linkedin: this.linkedIn,
+      facebook: this.facebook
+    };
+
+    this.profileService.createProfile(accountId, JSON.stringify({profile_name: this.profileName}), JSON.stringify(attributes)).then(
+        (success) => {
+          this.closeModal();
+        }, (err) => {
+            this.presentAlert('Something wrong...', '', err);
+        }
+    );
   }
 
 
@@ -95,6 +121,18 @@ export class CreateProfilePage implements OnInit {
     } else if (field === 'facebook') {
       this.facebook.display = (!this.facebook.display);
     }
+  }
+
+
+  async presentAlert(hd, sub, msg) {
+    const alert = await this.alertController.create({
+      header: hd,
+      subHeader: sub,
+      message: msg,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }

@@ -26,12 +26,12 @@
   <ion-list>
     <ion-item *ngIf="modalType === 'createProfile'">
       <ion-label position="floating">Profile Name</ion-label>
-      <ion-input [(ngModel)]="profile"></ion-input>
+      <ion-input [(ngModel)]="profileName"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="modalType === 'createProfile'">
       <ion-label>Select Icon</ion-label>
-      <ion-select [(ngModel)]="select" placeholder="Select One">
+      <ion-select [(ngModel)]="iconName" placeholder="Select One">
         <ion-select-option value="briefcase">briefcase</ion-select-option>
         <ion-select-option value="palette">art palette</ion-select-option>
         <ion-select-option value="person">person</ion-select-option>
