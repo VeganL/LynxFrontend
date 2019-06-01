@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 // Modal
 import {CreateProfilePageModule} from './modals/create-profile/create-profile.module';
+import {QrGeneratorPageModule} from './modals/qr-generator/qr-generator.module';
 
 // Services
 import { AuthServiceService } from './services/auth-service/auth-service.service';
@@ -18,6 +19,7 @@ import { UserDataService} from './services/user-data/user-data.service';
 
 // Plugins
 import { HTTP } from '@ionic-native/http/ngx';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,7 @@ import { HTTP } from '@ionic-native/http/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     CreateProfilePageModule,
+    QrGeneratorPageModule,
   ],
   providers: [
     StatusBar,
@@ -34,6 +37,7 @@ import { HTTP } from '@ionic-native/http/ngx';
     AuthServiceService,
     UserDataService,
     HTTP,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
