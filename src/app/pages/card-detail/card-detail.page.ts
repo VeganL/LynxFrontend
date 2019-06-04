@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavController} from '@ionic/angular';
-import {ActivatedRoute} from '@angular/router';
 import {QrGeneratorPage} from '../../modals/qr-generator/qr-generator.page';
-import {ProfileCardsService} from '../../services/profile-cards/profile-cards.service';
+import {UserDataService} from '../../services/user-data/user-data.service';
+
 
 @Component({
   selector: 'app-card-detail',
@@ -11,41 +11,24 @@ import {ProfileCardsService} from '../../services/profile-cards/profile-cards.se
 })
 export class CardDetailPage implements OnInit {
 
-  email = 'meme@meme.com';
-  phone = '(123)123-1234';
-  home = '123 Street, City, State, Country, ZipCode';
-  website = 'www.mywebbie.com';
-
-  attributes: any;
-  attributesSearch: [];
+  cardData: any;
 
   constructor(
       private navController: NavController,
       private modalController: ModalController,
-      private route: ActivatedRoute,
-      private profileCardsService: ProfileCardsService
+      private userDataService: UserDataService
   ) { }
 
   ngOnInit() {
-    this.attributes = this.route.snapshot.paramMap.get('attributes');
-    console.log('Attribute', this.attributes);
-    this.initializeAttributes();
+    this.cardData = this.userDataService.getCurrentSelectedCard();
   }
 
-  initializeAttributes() {
-    this.attributesSearch = this.attributes;
-  }
 
   async openCreateProfileModal() {
     const modal = await this.modalController.create({
       component: QrGeneratorPage,
       componentProps: {
-        data: {
-          email: this.email,
-          phone: this.phone,
-          home: this.home,
-          website: this.website
-        }
+        data: this.cardData
       }
     });
 

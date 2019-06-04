@@ -18,9 +18,6 @@ const routes: Routes = [
             path: 'card-detail',
             loadChildren: '../pages/card-detail/card-detail.module#CardDetailPageModule',
           },
-          { path: 'accept-detail',
-            loadChildren: '../pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
-          },
           {
             path: 'profile-list/:profile-id',
             children: [
@@ -47,7 +44,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pages/wallet/wallet.module#WalletPageModule'
-          }
+          },
+          { path: 'accept-detail',
+            loadChildren: '../pages/accept-detail/accept-detail.module#AcceptDetailPageModule',
+          },
         ]
       },
       {

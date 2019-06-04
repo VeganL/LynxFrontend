@@ -54,7 +54,8 @@ export class ProfileListPage implements OnInit {
         return await modal.present();
     }
 
-    details() {
+    details(card) {
+        this.userDataService.setCurrentSelectedCard(card);
         this.navController.navigateForward('/tabs/profiles/card-detail');
     }
 

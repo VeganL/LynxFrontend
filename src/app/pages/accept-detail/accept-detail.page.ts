@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController} from "@ionic/angular";
+import {ModalController, NavController} from "@ionic/angular";
+import {UserDataService} from "../../services/user-data/user-data.service";
+import {QrGeneratorPage} from "../../modals/qr-generator/qr-generator.page";
 
 @Component({
   selector: 'app-accept-detail',
@@ -8,17 +10,27 @@ import {NavController} from "@ionic/angular";
 })
 export class AcceptDetailPage implements OnInit {
 
-  email = 'meme@meme.com';
-  phone = '(123)123-1234';
-  home = '123 Street, City, State, Country, ZipCode';
-  website = 'www.mywebbie.com';
+  cardData: any;
 
-  constructor(private navController: NavController) { }
+  constructor(
+      private navController: NavController,
+      private modalController: ModalController,
+      private userDataService: UserDataService
+  ) { }
 
   ngOnInit() {
+    this.cardData = this.userDataService.getCurrentSelectedCard();
   }
 
-  wallet(){
-    this.navController.navigateRoot('/tabs/profiles/profile-list');
+
+  async openCreateProfileModal() {
+    const modal = await this.modalController.create({
+      component: QrGeneratorPage,
+      componentProps: {
+        data: this.cardData
+      }
+    });
+
+    return await modal.present();
   }
 }

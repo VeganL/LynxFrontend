@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import {CreateProfilePage} from "../../modals/create-profile/create-profile.page";
+import {AcceptPage} from "../../modals/accept/accept.page";
+import {Subscription} from "rxjs";
+import {Router, NavigationEnd} from "@angular/router";
+import {scan} from "rxjs/operators";
 
 @Component({
   selector: 'app-scanner',
@@ -15,12 +20,26 @@ export class ScannerPage implements OnInit {
   isLightOn = false;
   camera = 0;
 
+  private subscription: Subscription;
+
   constructor(
       public alertController: AlertController,
       private qrScanner: QRScanner,
+      private modalController: ModalController,
+      private router: Router
   ) {}
 
   ngOnInit(): void {
+    /*
+ * since ionViewWillEnter only trigger once on tab router.
+ * This is a way around it.
+ * Subscribe to router.
+ */
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/tabs') {
+        this.ionViewWillEnter();
+      }
+    });
   }
 
   /**
@@ -49,9 +68,10 @@ export class ScannerPage implements OnInit {
             /* start scanning */
             this.scannerSub = this.qrScanner.scan().subscribe((data: any) => {
               console.log('QR Data', data);
-              this.presentAlert('Data', '', data).then(() => {
-                this.startScanner();
-              });
+              // this.presentAlert('Data', '', data).then(() => {
+              //   this.startScanner();
+              // });
+              this.openAcceptModal(data);
             });
 
             this.qrScanner.show().then();
@@ -144,5 +164,26 @@ export class ScannerPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async openAcceptModal(scannedData) {
+    const modal = await this.modalController.create({
+      component: AcceptPage,
+      componentProps: {
+        qrData: scannedData
+      }
+    });
+
+    this.disableLight();
+    await modal.present();
+
+    /* restart scanner after modal is dismiss */
+    const { data } = await modal.onDidDismiss();
+
+    if ( data === null || data === undefined ) {
+      this.startScanner();
+    } else {
+      this.ionViewWillLeave();
+    }
   }
 }
