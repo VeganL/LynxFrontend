@@ -1,60 +1,72 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController, NavController} from "@ionic/angular";
-import {CreateProfilePage} from "../../modals/create-profile/create-profile.page";
-import { UserDataService } from '../../services/user-data/user-data.service';
-
+import {ModalController, NavController} from '@ionic/angular';
+import {CreateProfilePage} from '../../modals/create-profile/create-profile.page';
+import {ActivatedRoute} from '@angular/router';
+import {ProfileCardsService} from '../../services/profile-cards/profile-cards.service';
 
 @Component({
-  selector: 'app-profile-list',
-  templateUrl: './profile-list.page.html',
-  styleUrls: ['./profile-list.page.scss'],
+    selector: 'app-profile-list',
+    templateUrl: './profile-list.page.html',
+    styleUrls: ['./profile-list.page.scss'],
 })
 export class ProfileListPage implements OnInit {
 
-  searchVar: string;
+    searchVar: string;
+    profileId;
 
-  profileCards = [];
+    profileCards = [];
 
-  profileCardsSearch = [];
+    profileCardsSearch = [];
 
-  constructor(
-      private navController: NavController,
-      private modalController: ModalController,
-      private userDataService: UserDataService
-  ) { }
-
-  ngOnInit() {
-    this.profileCards = this.userDataService.getUserData().profiles;
-    this.initializeProfileCards();
-  }
+    constructor(
+        private navController: NavController,
+        private modalController: ModalController,
+        private route: ActivatedRoute,
+        private profileCardsService: ProfileCardsService
+    ) { }
 
 
-  async openCreateProfileModal() {
-    const modal = await this.modalController.create({
-      component: CreateProfilePage,
-      componentProps: {
-        type: 'createCard'
-      }
-    });
-    return await modal.present();
-  }
+    ngOnInit() {
+        this.profileId = this.route.snapshot.paramMap.get('profile-id');
+        this.profileCardsService.getProfileCards(this.profileId).then(
+            (data) => {
+                this.profileCards = data;
+                console.log('Profile cards', data);
+                this.initializeProfileCards();
+            }, (err) => {
+                console.error(err);
+            }
+        );
+    }
 
-  details() {
-    this.navController.navigateForward('/tabs/profiles/card-detail');
-  }
+
+    async openCreateProfileModal() {
+        const modal = await this.modalController.create({
+            component: CreateProfilePage,
+            componentProps: {
+                type: 'createCard',
+                proId: this.profileId
+            }
+        });
+        return await modal.present();
+    }
+
+    details() {
+        this.navController.navigateForward('/tabs/profiles/card-detail');
+    }
 
 
-  initializeProfileCards() {
-    this.profileCardsSearch = this.profileCards;
-  }
+    initializeProfileCards() {
+        this.profileCardsSearch = this.profileCards;
+    }
 
-  searchbar() {
-    this.initializeProfileCards();
+    searchbar() {
+        this.initializeProfileCards();
 
-    console.log(this.searchVar);
-    this.profileCardsSearch = this.profileCardsSearch.filter( (card) => {
-      return card.name.toLocaleLowerCase().indexOf(this.searchVar.toLocaleLowerCase()) > -1;
-    });
-  }
+        console.log(this.searchVar);
+        this.profileCardsSearch = this.profileCardsSearch.filter( (card) => {
+            return card.name.toLocaleLowerCase().indexOf(this.searchVar.toLocaleLowerCase()) > -1;
+        });
+    }
 
 }
