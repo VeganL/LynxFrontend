@@ -11,10 +11,11 @@
 <ion-content>
 
   <div class="page-header">
-    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    <h1>{{ qrData.attributes.name }}</h1>
-    <h2>{{ qrData.attributes.title }}</h2>
+    <img src="{{qrData.attributes.photo}}" alt="photo"/>
+    <h1>{{qrData.attributes.name}}</h1>
+    <h2>{{qrData.attributes.title}}</h2>
   </div>
+
 
   <ion-list padding>
     <ion-item *ngIf="qrData.attributes.email">
@@ -65,14 +66,15 @@
       </ion-label>
       <ion-icon name="logo-facebook" slot="start"></ion-icon>
     </ion-item>
-
+    
   </ion-list>
 
+  
   <ion-item padding>
     <ion-grid class="buttons">
       <ion-row>
         <ion-col>
-          <ion-button class="accept-button" shape="round" fill="clear" (click)="accept()">
+          <ion-button class="accept-button" shape="round" fill="clear" (click)="acceptCard()">
             Accept
           </ion-button>
         </ion-col>

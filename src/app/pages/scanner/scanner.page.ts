@@ -5,6 +5,7 @@ import {CreateProfilePage} from "../../modals/create-profile/create-profile.page
 import {AcceptPage} from "../../modals/accept/accept.page";
 import {Subscription} from "rxjs";
 import {Router, NavigationEnd} from "@angular/router";
+import {scan} from "rxjs/operators";
 
 @Component({
   selector: 'app-scanner',

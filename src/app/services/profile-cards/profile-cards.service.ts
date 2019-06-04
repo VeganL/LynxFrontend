@@ -46,15 +46,15 @@ export class ProfileCardsService {
 
     }
 
-    acceptWalletCards(cardId, acctId): Promise<[]> {
-        return new Promise<[]>((resolve, reject) => {
+    acceptWalletCards(cardId, acctId): Promise<{}> {
+        return new Promise<{}>((resolve, reject) => {
             const headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
             };
 
             const body = {
-                type : 'add_card_wallet_conf',
-                card_id : cardId,
+                type: 'add_card_wallet_conf',
+                card_id: cardId,
                 account_id: acctId
             };
 
@@ -67,7 +67,7 @@ export class ProfileCardsService {
                         if (data.err) {
                             reject(data.err);
                         } else {
-                            resolve(data.profile_cards);
+                            resolve(data);
                         }
                     }
                 },

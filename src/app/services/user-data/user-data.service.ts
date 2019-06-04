@@ -7,7 +7,7 @@ export class UserDataService {
 
   private userData;
   private currentSelectedProfile;
-
+  private currentSelectedCard;
 
   constructor() { }
 
@@ -26,5 +26,13 @@ export class UserDataService {
 
   setcurrentSelectedProfile(currentProfile) {
     this.currentSelectedProfile = currentProfile;
+  }
+
+  getCurrentSelectedCard() {
+    return this.currentSelectedCard;
+  }
+
+  setCurrentSelectedCard(selectedCard) {
+    this.currentSelectedCard = selectedCard;
   }
 }

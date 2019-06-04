@@ -19,13 +19,15 @@ export class AcceptPage implements OnInit {
       private userDataService: UserDataService,
       private navParams: NavParams
   ) {
-    this.qrData = this.navParams.get('qrData');
+
   }
 
   ngOnInit() {
+    this.qrData = JSON.parse(this.navParams.get('qrData'));
   }
 
   goToWalletPage() {
+    this.closeModal();
     this.navController.navigateRoot('/tabs/wallet');
   }
 
@@ -33,7 +35,7 @@ export class AcceptPage implements OnInit {
     this.modalController.dismiss();
   }
 
-  accept() {
+  acceptCard() {
     this.profileCardsService.acceptWalletCards(this.qrData.card_id, this.userDataService.getUserData().account_id).then(
         (res) => {
 
@@ -42,6 +44,6 @@ export class AcceptPage implements OnInit {
         }, (err) => {
           console.error(err);
         }
-    )
+    );
   }
 }

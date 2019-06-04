@@ -18,7 +18,7 @@
 <ion-content>
 
   <div class="card-container">
-    <ion-card *ngFor="let card of profileCardsSearch" button padding (click)="details()">
+    <ion-card *ngFor="let card of profileCardsSearch" button padding (click)="details(card)">
       <ion-item lines="none">
         <ion-thumbnail slot="start">
           <img style="border-radius: 50%" src="{{card.attributes.photo}}" />
