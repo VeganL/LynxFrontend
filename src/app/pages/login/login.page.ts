@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
   login() {
     console.log(this.username, this.password);
 
-    this.authServiceService.authentication(this.username, this.password).then(
+    this.authServiceService.loginWithUsername(this.username, this.password).then(
         (data) => {
             this.userDataService.setUserData(data);
 
@@ -52,6 +52,10 @@ export class LoginPage implements OnInit {
 
         }
     );
+  }
+
+  create() {
+      this.navController.navigateForward('/create-account');
   }
 
 }
