@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { QrGeneratorPage } from './qr-generator.page';
 
+import { QRCodeModule } from 'angular2-qrcode';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -19,7 +22,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    QRCodeModule
   ],
   declarations: [QrGeneratorPage]
 })

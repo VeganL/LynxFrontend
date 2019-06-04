@@ -10,8 +10,10 @@
 
 <ion-content>
 
-  <div class="qr-code-pic-container">
-    <img class="qr-code-pic" src="../../../assets/qr-code.png"  alt="qr-code"/>
-  </div>
+  <!-- <div class="qr-code-pic-container"> -->
+    <div class="qrcodedude">
+      <qr-code [value]="qrData" [size]="350"></qr-code>
+    </div>
+  <!-- </div> -->
 
 </ion-content>
