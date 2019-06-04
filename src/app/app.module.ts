@@ -20,7 +20,7 @@ import { ProfileService} from "./services/profile/profile.service";
 
 // Plugins
 import { HTTP } from '@ionic-native/http/ngx';
-import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
+import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +31,7 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
     AppRoutingModule,
     CreateProfilePageModule,
     QrGeneratorPageModule,
+    QRCodeModule
   ],
   providers: [
     StatusBar,
@@ -39,7 +40,6 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
     UserDataService,
     ProfileService,
     HTTP,
-    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
