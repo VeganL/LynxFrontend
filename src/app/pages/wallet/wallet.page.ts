@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from "@ionic/angular";
+import {WalletService} from "../../services/wallet/wallet.service";
+import {UserDataService} from "../../services/user-data/user-data.service";
 
 @Component({
   selector: 'app-wallet',
@@ -8,32 +10,27 @@ import {NavController} from "@ionic/angular";
 })
 export class WalletPage implements OnInit {
 
-  profileCards = [
-    {
-      icon: 'person',
-      name: 'Personal',
-    },
-    {
-      icon: 'bowtie',
-      name: 'Professional',
-    },
-    {
-      icon: 'color-palette',
-      name: 'Art',
-    },
-    {
-      icon: 'briefcase',
-      name: 'Work'
-    }
-  ];
+  walletCards = [];
 
-  constructor(private navController: NavController) { }
+  constructor(
+      private navController: NavController,
+      private walletService: WalletService,
+      private userDataService: UserDataService,
+  ) { }
 
   ngOnInit() {
+    this.walletService.getWalletCards(this.userDataService.getUserData().account_id).then(
+        (data) => {
+          this.walletCards = data;
+        }, (err) => {
+          console.error(err);
+        }
+    );
   }
 
-  details() {
-    this.navController.navigateForward('/tabs/profiles/profile-list/accept-detail');
+  details(card) {
+    this.userDataService.setCurrentSelectedCard(card);
+    this.navController.navigateForward('/tabs/wallet/accept-detail');
   }
 
 }

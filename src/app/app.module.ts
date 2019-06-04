@@ -12,12 +12,13 @@ import { AppComponent } from './app.component';
 // Modal
 import {CreateProfilePageModule} from './modals/create-profile/create-profile.module';
 import {QrGeneratorPageModule} from './modals/qr-generator/qr-generator.module';
-import {AcceptPageModule} from "./modals/accept/accept.module";
+import {AcceptPageModule} from './modals/accept/accept.module';
 
 // Services
 import { AuthServiceService } from './services/auth-service/auth-service.service';
 import { UserDataService} from './services/user-data/user-data.service';
 import { ProfileService} from './services/profile/profile.service';
+import { WalletService } from './services/wallet/wallet.service';
 
 // Plugins
 import { HTTP } from '@ionic-native/http/ngx';
@@ -44,6 +45,7 @@ import {WebView} from "@ionic-native/ionic-webview/ngx";
     AuthServiceService,
     UserDataService,
     ProfileService,
+    WalletService,
     HTTP,
     QRScanner,
     Camera,
