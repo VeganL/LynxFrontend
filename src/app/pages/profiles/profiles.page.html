@@ -21,7 +21,7 @@
 <ion-content>
 
   <div class="card-container">
-    <ion-card *ngFor="let profile of profileSearch" (click)="details(profile.profile_id)">
+    <ion-card *ngFor="let profile of profileSearch" (click)="details(profile)">
       <ion-card-header>
         <ion-card-title>
           <ion-icon name={{profile.icon}}></ion-icon>

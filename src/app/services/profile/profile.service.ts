@@ -51,16 +51,21 @@ export class ProfileService {
         'Content-Type': 'application/x-www-form-urlencoded'
       };
 
+      console.log('Profile Id', profileId);
+      console.log('attr', attrJson);
+
       const body = {
         type: 'insert_profile_card',
         profile_id: profileId,
-        attr_json_array: attrJson
+        attr_json_array: JSON.stringify(attrJson)
       };
+
+      this.http.setDataSerializer('urlencoded');
 
       this.http.post(this.url, body, headers).then(
           (success) => {
             if (success.status === 200) {
-              console.log(success);
+              console.log(success.data);
               const data = JSON.parse(success.data);
 
               if (data.err) {
