@@ -36,7 +36,54 @@ export class ProfilesPage implements OnInit {
     const modal = await this.modalController.create({
       component: CreateProfilePage,
       componentProps: {
-        type: 'createProfile'
+        type: 'createProfile',
+        proId: '',
+        attrJson: [
+          {
+            attribute_id: 1,
+            icon_name: ''
+          },
+          {
+            attribute_id: 2,
+            photo: ''
+          },
+          {
+            attribute_id: 3,
+            name: ''
+          },
+          {
+            attribute_id: 4,
+            title: ''
+          },
+          {
+            attribute_id: 5,
+            email: ''
+          },
+          {
+            attribute_id: 6,
+            phone: ''
+          },
+          {
+            attribute_id: 7,
+            address: ''
+          },
+          {
+            attribute_id: 8,
+            website: ''
+          },
+          {
+            attribute_id: 9,
+            snapchat: ''
+          },
+          {
+            attribute_id: 10,
+            linkedin: ''
+          },
+          {
+            attribute_id: 11,
+            facebook: ''
+          }
+        ]
       }
     });
 
@@ -47,8 +94,9 @@ export class ProfilesPage implements OnInit {
     this.navController.navigateRoot('/login');
   }
 
-  details(profileId) {
-    this.navController.navigateForward('/tabs/profiles/profile-list/' + profileId);
+  details(profile) {
+    this.userDataService.setcurrentSelectedProfile(profile);
+    this.navController.navigateForward('/tabs/profiles/profile-list/' + profile.profile_id);
   }
 
   searchbar() {

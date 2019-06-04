@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class UserDataService {
 
   private userData;
+  private currentSelectedProfile;
+
 
   constructor() { }
 
@@ -15,5 +17,14 @@ export class UserDataService {
 
   setUserData(newUserData) {
     this.userData = newUserData;
+  }
+
+
+  getCurrentSelectedProfile() {
+    return this.currentSelectedProfile;
+  }
+
+  setcurrentSelectedProfile(currentProfile) {
+    this.currentSelectedProfile = currentProfile;
   }
 }

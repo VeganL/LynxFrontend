@@ -3,6 +3,7 @@ import {ModalController, NavController} from '@ionic/angular';
 import {CreateProfilePage} from '../../modals/create-profile/create-profile.page';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileCardsService} from '../../services/profile-cards/profile-cards.service';
+import { UserDataService } from '../../services/user-data/user-data.service';
 
 @Component({
     selector: 'app-profile-list',
@@ -22,8 +23,9 @@ export class ProfileListPage implements OnInit {
         private navController: NavController,
         private modalController: ModalController,
         private route: ActivatedRoute,
-        private profileCardsService: ProfileCardsService
-    ) { }
+        private profileCardsService: ProfileCardsService,
+        private userDataService: UserDataService
+    ) {}
 
 
     ngOnInit() {
@@ -45,7 +47,8 @@ export class ProfileListPage implements OnInit {
             component: CreateProfilePage,
             componentProps: {
                 type: 'createCard',
-                proId: this.profileId
+                proId: this.profileId,
+                attrJson: this.userDataService.getCurrentSelectedProfile().attributes
             }
         });
         return await modal.present();
