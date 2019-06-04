@@ -22,7 +22,8 @@ import { ProfileService} from './services/profile/profile.service';
 import { HTTP } from '@ionic-native/http/ngx';
 import { QRCodeModule } from 'angular2-qrcode';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
-
+import {Camera} from "@ionic-native/camera/ngx";
+import {WebView} from "@ionic-native/ionic-webview/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +44,8 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
     ProfileService,
     HTTP,
     QRScanner,
+    Camera,
+    WebView,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
