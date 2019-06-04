@@ -15,8 +15,18 @@
 
   <div class="page-header">
     <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    <h1>First Name</h1>
+    <h1>{{attributes.name}}</h1>
   </div>
+
+
+  <ion-list padding>
+    <ion-item *ngIf="attributes.email">
+      <ion-label>
+        {{attributesSearch}}
+      </ion-label>
+    </ion-item>
+    <ion-icon name="mail" slot="start"></ion-icon>
+  </ion-list>
 
   <ion-list padding>
     <ion-item>
