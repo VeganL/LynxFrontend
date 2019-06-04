@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController, NavController} from '@ionic/angular';
+import {ModalController, NavController, NavParams} from '@ionic/angular';
+import {ProfileCardsService} from "../../services/profile-cards/profile-cards.service";
+import {UserDataService} from "../../services/user-data/user-data.service";
 
 @Component({
   selector: 'app-accept',
@@ -8,22 +10,38 @@ import {ModalController, NavController} from '@ionic/angular';
 })
 export class AcceptPage implements OnInit {
 
-  email = 'meme@meme.com';
-  phone = '(123)123-1234';
-  home = '123 Street, City, State, Country, ZipCode';
-  website = 'www.mywebbie.com';
+  qrData;
 
-  constructor(private navController: NavController, private modalController: ModalController) { }
+  constructor(
+      private navController: NavController,
+      private modalController: ModalController,
+      private profileCardsService: ProfileCardsService,
+      private userDataService: UserDataService,
+      private navParams: NavParams
+  ) {
+    this.qrData = this.navParams.get('qrData');
+  }
 
   ngOnInit() {
   }
 
-  wallet() {
-    this.navController.navigateRoot('/tabs/profiles/profile-list');
+  goToWalletPage() {
+    this.navController.navigateRoot('/tabs/wallet');
   }
 
   closeModal() {
-    this.modalController.dismiss({
-    });
+    this.modalController.dismiss();
+  }
+
+  accept() {
+    this.profileCardsService.acceptWalletCards(this.qrData.card_id, this.userDataService.getUserData().account_id).then(
+        (res) => {
+
+          this.goToWalletPage();
+
+        }, (err) => {
+          console.error(err);
+        }
+    )
   }
 }

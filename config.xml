@@ -92,11 +92,7 @@
     <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
-    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <allow-navigation href="http://10.250.102.59:8100" sessionid="9dee6664" />
-    <allow-navigation href="http://10.250.5.250:8100" sessionid="c68bbb29" />
     <preference name="UseSwiftLanguageVersion" value="5" />
-    <plugin name="cordova-plugin-qrscanner" spec="3.0.1" />
-    <engine name="ios" spec="4.5.5" />
-    <allow-navigation href="http://10.250.102.59:8100" sessionid="b52d397d" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <allow-navigation href="http://10.250.102.59:8100" sessionid="cc144a85" />
 </widget>

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 // Modal
 import {CreateProfilePageModule} from './modals/create-profile/create-profile.module';
 import {QrGeneratorPageModule} from './modals/qr-generator/qr-generator.module';
+import {AcceptPageModule} from "./modals/accept/accept.module";
 
 // Services
 import { AuthServiceService } from './services/auth-service/auth-service.service';
@@ -34,7 +35,8 @@ import {WebView} from "@ionic-native/ionic-webview/ngx";
     AppRoutingModule,
     CreateProfilePageModule,
     QrGeneratorPageModule,
-    QRCodeModule
+    QRCodeModule,
+    AcceptPageModule
   ],
   providers: [
     StatusBar,

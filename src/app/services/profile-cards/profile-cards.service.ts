@@ -46,4 +46,40 @@ export class ProfileCardsService {
 
     }
 
+    acceptWalletCards(cardId, acctId): Promise<[]> {
+        return new Promise<[]>((resolve, reject) => {
+            const headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            };
+
+            const body = {
+                type : 'add_card_wallet_conf',
+                card_id : cardId,
+                account_id: acctId
+            };
+
+            this.http.post(this.url, body, headers).then(
+                (success) => {
+                    if (success.status === 200) {
+                        console.log(success);
+                        const data = JSON.parse(success.data);
+
+                        if (data.err) {
+                            reject(data.err);
+                        } else {
+                            resolve(data.profile_cards);
+                        }
+                    }
+                },
+                (err) => {
+                    console.error(err);
+                }
+            );
+        });
+
+    }
 }
+
+
+
+
