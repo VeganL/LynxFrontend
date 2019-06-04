@@ -1,72 +1,72 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController, NavController} from "@ionic/angular";
-import {CreateProfilePage} from "../../modals/create-profile/create-profile.page";
-import {ActivatedRoute} from "@angular/router";
+import {ModalController, NavController} from '@ionic/angular';
+import {CreateProfilePage} from '../../modals/create-profile/create-profile.page';
+import {ActivatedRoute} from '@angular/router';
+import {ProfileCardsService} from '../../services/profile-cards/profile-cards.service';
 
 @Component({
-  selector: 'app-profile-list',
-  templateUrl: './profile-list.page.html',
-  styleUrls: ['./profile-list.page.scss'],
+    selector: 'app-profile-list',
+    templateUrl: './profile-list.page.html',
+    styleUrls: ['./profile-list.page.scss'],
 })
 export class ProfileListPage implements OnInit {
 
-  searchVar: string;
-  profileId;
+    searchVar: string;
+    profileId;
 
-  profileCards = [
-    {
-      name: 'Name M Last',
-    },
-    {
-      name: 'Name Haha',
-    },
-    {
-      name: 'Name baba',
+    profileCards = [];
+
+    profileCardsSearch = [];
+
+    constructor(
+        private navController: NavController,
+        private modalController: ModalController,
+        private route: ActivatedRoute,
+        private profileCardsService: ProfileCardsService
+    ) { }
+
+
+    ngOnInit() {
+        this.profileId = this.route.snapshot.paramMap.get('profile-id');
+        this.profileCardsService.getProfileCards(this.profileId).then(
+            (data) => {
+                this.profileCards = data;
+                console.log('Profile cards', data);
+                this.initializeProfileCards();
+            }, (err) => {
+                console.error(err);
+            }
+        );
     }
-  ];
-
-  profileCardsSearch = [];
-
-  constructor(
-      private navController: NavController,
-      private modalController: ModalController,
-      private route: ActivatedRoute
-  ) { }
 
 
-  ngOnInit() {
-    this.profileId = this.route.snapshot.paramMap.get('profile-id');
-    this.initializeProfileCards();
-  }
+    async openCreateProfileModal() {
+        const modal = await this.modalController.create({
+            component: CreateProfilePage,
+            componentProps: {
+                type: 'createCard',
+                proId: this.profileId
+            }
+        });
+        return await modal.present();
+    }
+
+    details() {
+        this.navController.navigateForward('/tabs/profiles/card-detail');
+    }
 
 
-  async openCreateProfileModal() {
-    const modal = await this.modalController.create({
-      component: CreateProfilePage,
-      componentProps: {
-        type: 'createCard',
-        proId: this.profileId
-      }
-    });
-    return await modal.present();
-  }
+    initializeProfileCards() {
+        this.profileCardsSearch = this.profileCards;
+    }
 
-  details() {
-    this.navController.navigateForward('/tabs/profiles/card-detail');
-  }
+    searchbar() {
+        this.initializeProfileCards();
 
-
-  initializeProfileCards() {
-    this.profileCardsSearch = this.profileCards;
-  }
-
-  searchbar() {
-    this.initializeProfileCards();
-
-    console.log(this.searchVar);
-    this.profileCardsSearch = this.profileCardsSearch.filter( (card) => {
-      return card.name.toLocaleLowerCase().indexOf(this.searchVar.toLocaleLowerCase()) > -1;
-    });
-  }
+        console.log(this.searchVar);
+        this.profileCardsSearch = this.profileCardsSearch.filter( (card) => {
+            return card.name.toLocaleLowerCase().indexOf(this.searchVar.toLocaleLowerCase()) > -1;
+        });
+    }
 
 }
