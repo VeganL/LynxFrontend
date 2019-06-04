@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavController} from "@ionic/angular";
 import {CreateProfilePage} from "../../modals/create-profile/create-profile.page";
+import {ActivatedRoute} from "@angular/router";
+
 @Component({
   selector: 'app-profile-list',
   templateUrl: './profile-list.page.html',
@@ -9,6 +11,7 @@ import {CreateProfilePage} from "../../modals/create-profile/create-profile.page
 export class ProfileListPage implements OnInit {
 
   searchVar: string;
+  profileId;
 
   profileCards = [
     {
@@ -27,9 +30,12 @@ export class ProfileListPage implements OnInit {
   constructor(
       private navController: NavController,
       private modalController: ModalController,
+      private route: ActivatedRoute
   ) { }
 
+
   ngOnInit() {
+    this.profileId = this.route.snapshot.paramMap.get('profile-id');
     this.initializeProfileCards();
   }
 
@@ -38,7 +44,8 @@ export class ProfileListPage implements OnInit {
     const modal = await this.modalController.create({
       component: CreateProfilePage,
       componentProps: {
-        type: 'createCard'
+        type: 'createCard',
+        proId: this.profileId
       }
     });
     return await modal.present();

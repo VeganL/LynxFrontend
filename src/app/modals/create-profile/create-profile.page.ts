@@ -12,6 +12,7 @@ import {UserDataService} from '../../services/user-data/user-data.service';
 export class CreateProfilePage implements OnInit {
 
   modalType: string;
+  profileId: number;
 
   profileName: string;
   iconName = [];
@@ -19,31 +20,31 @@ export class CreateProfilePage implements OnInit {
   title: string;
   email = {
     value: '',
-    display: true
+    display: false
   };
   phone = {
     value: '',
-    display: true
+    display: false
   };
   address = {
     value: '',
-    display: true
+    display: false
   };
   website = {
     value: '',
-    display: true
+    display: false
   };
   snapchat = {
     value: '',
-    display: true
+    display: false
   };
   facebook = {
     value: '',
-    display: true
+    display: false
   };
   linkedIn = {
     value: '',
-    display: true
+    display: false
   };
 
   constructor(
@@ -54,6 +55,8 @@ export class CreateProfilePage implements OnInit {
       public alertController: AlertController
   ) {
     this.modalType = this.navParams.get('type');
+    this.profileId = this.navParams.get('proId');
+
   }
 
   ngOnInit() {}
@@ -96,6 +99,8 @@ export class CreateProfilePage implements OnInit {
 
   saveCreateCard() {
     console.log('Save Card');
+
+    this.profileService.createCard(this.profileId, )
   }
 
 

@@ -42,4 +42,38 @@ export class ProfileService {
       );
     });
   }
+
+
+
+  createCard(profileId, attrJson): Promise<{}> {
+    return new Promise<{}>((resolve, reject) => {
+      const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+
+      const body = {
+        type: 'insert_profile_card',
+        profile_id: profileId,
+        attr_json_array: attrJson
+      };
+
+      this.http.post(this.url, body, headers).then(
+          (success) => {
+            if (success.status === 200) {
+              console.log(success);
+              const data = JSON.parse(success.data);
+
+              if (data.err) {
+                reject(data.err);
+              } else {
+                resolve(data);
+              }
+            }
+          },
+          (err) => {
+            console.error(err);
+          }
+      );
+    });
+  }
 }
