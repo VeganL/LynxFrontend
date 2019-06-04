@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavController} from '@ionic/angular';
 import {CreateProfilePage} from '../../modals/create-profile/create-profile.page';
-import {UserDataService} from "../../services/user-data/user-data.service";
+import {UserDataService} from '../../services/user-data/user-data.service';
 
 @Component({
   selector: 'app-profiles',
@@ -14,7 +14,7 @@ export class ProfilesPage implements OnInit {
 
   profiles: any;
 
-  profileSearch = []
+  profileSearch = [];
 
   constructor(
       private navController: NavController,
@@ -29,10 +29,10 @@ export class ProfilesPage implements OnInit {
   }
 
   initializeProfiles() {
-    this.profileSearch = this.profiles
+    this.profileSearch = this.profiles;
   }
 
-  async openCreateProfileModal(){
+  async openCreateProfileModal() {
     const modal = await this.modalController.create({
       component: CreateProfilePage,
       componentProps: {

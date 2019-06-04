@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavController} from "@ionic/angular";
 import {CreateProfilePage} from "../../modals/create-profile/create-profile.page";
+import { UserDataService } from '../../services/user-data/user-data.service';
+
+
 @Component({
   selector: 'app-profile-list',
   templateUrl: './profile-list.page.html',
@@ -10,26 +13,18 @@ export class ProfileListPage implements OnInit {
 
   searchVar: string;
 
-  profileCards = [
-    {
-      name: 'Name M Last',
-    },
-    {
-      name: 'Name Haha',
-    },
-    {
-      name: 'Name baba',
-    }
-  ];
+  profileCards = [];
 
   profileCardsSearch = [];
 
   constructor(
       private navController: NavController,
       private modalController: ModalController,
+      private userDataService: UserDataService
   ) { }
 
   ngOnInit() {
+    this.profileCards = this.userDataService.getUserData().profiles;
     this.initializeProfileCards();
   }
 
