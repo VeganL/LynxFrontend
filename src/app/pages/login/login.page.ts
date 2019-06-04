@@ -27,18 +27,22 @@ export class LoginPage implements OnInit {
   login() {
     console.log(this.username, this.password);
 
-    this.authServiceService.authentication(this.username, this.password).then(
+    this.authServiceService.loginWithUsername(this.username, this.password).then(
         (data) => {
             this.userDataService.setUserData(data);
 
-          console.log('User Data', data);
-          this.navController.navigateRoot('/tabs/profiles');
+            console.log('User Data', data);
+            this.navController.navigateRoot('/tabs/profiles');
 
         },
         (err) => {
 
         }
     );
+  }
+
+  create() {
+      this.navController.navigateForward('/create-account');
   }
 
 }
