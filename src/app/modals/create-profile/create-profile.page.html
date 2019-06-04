@@ -23,6 +23,14 @@
 
 <ion-content>
 
+  <div class="profile-header">
+<!--      <ion-avatar>-->
+        <ion-img src="{{profileImage}}" alt="Profile" (click)="choosePictureSource()"></ion-img>
+<!--      </ion-avatar>-->
+
+      <ion-icon color="light" class="profile-edit-text" name="camera" (click)="choosePictureSource()"></ion-icon>
+  </div>
+
   <ion-list>
     <ion-item *ngIf="modalType === 'createProfile'">
       <ion-label position="floating">Profile Name</ion-label>
@@ -41,12 +49,12 @@
 
     <ion-item>
       <ion-label position="floating">Your Name</ion-label>
-      <ion-input [(ngModel)]="name"></ion-input>
+      <ion-input [(ngModel)]="attributes[1].name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Title</ion-label>
-      <ion-input [(ngModel)]="title"></ion-input>
+      <ion-input [(ngModel)]="attributes[2].title"></ion-input>
     </ion-item>
 
   </ion-list>
@@ -54,45 +62,45 @@
 
   <ion-list>
     <ion-item>
-      <ion-icon *ngIf="email.display" (click)="displayField('email')" name="mail" slot="start"></ion-icon>
-      <ion-icon *ngIf="!email.display" (click)="displayField('email')" color="medium" name="mail" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="email.value" placeholder="Email"></ion-input>
+      <ion-icon *ngIf="attributes[3].display" (click)="displayField(attributes[3])" name="mail" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[3].display" (click)="displayField(attributes[3])" color="medium" name="mail" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[3].email" placeholder="Email" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon *ngIf="phone.display" (click)="displayField('phone')" name="call" slot="start"></ion-icon>
-      <ion-icon *ngIf="!phone.display" (click)="displayField('phone')" color="medium" name="call" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="phone.value" placeholder="Phone"></ion-input>
+      <ion-icon *ngIf="attributes[4].display" (click)="displayField(attributes[4])" name="call" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[4].display" (click)="displayField(attributes[4])" color="medium" name="call" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[4].phone" placeholder="Phone" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon *ngIf="address.display" (click)="displayField('address')" name="home" slot="start"></ion-icon>
-      <ion-icon *ngIf="!address.display" (click)="displayField('address')" color="medium" name="home" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="address.value" placeholder="Address"></ion-input>
+      <ion-icon *ngIf="attributes[5].display" (click)="displayField(attributes[5])" name="home" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[5].display" (click)="displayField(attributes[5])" color="medium" name="home" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[5].address" placeholder="Address" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon *ngIf="website.display" (click)="displayField('website')" name="link" slot="start"></ion-icon>
-      <ion-icon *ngIf="!website.display" (click)="displayField('website')" color="medium" name="link" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="website.value" placeholder="Website URL"></ion-input>
+      <ion-icon *ngIf="attributes[6].display" (click)="displayField(attributes[6])" name="link" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[6].display" (click)="displayField(attributes[6])" color="medium" name="link" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[6].website" placeholder="Website URL" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon *ngIf="snapchat.display" (click)="displayField('snapchat')" name="logo-snapchat" slot="start"></ion-icon>
-      <ion-icon *ngIf="!snapchat.display" (click)="displayField('snapchat')" color="medium" name="logo-snapchat" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="snapchat.value" placeholder="Snapchat"></ion-input>
+      <ion-icon *ngIf="attributes[7].display" (click)="displayField(attributes[7])" name="logo-snapchat" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[7].display" (click)="displayField(attributes[7])" color="medium" name="logo-snapchat" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[7].snapchat" placeholder="Snapchat" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon *ngIf="linkedIn.display" (click)="displayField('linkedIn')" name="logo-linkedin" slot="start"></ion-icon>
-      <ion-icon *ngIf="!linkedIn.display" (click)="displayField('linkedIn')" color="medium" name="logo-linkedin" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="linkedIn.value" placeholder="LinkedIn"></ion-input>
+      <ion-icon *ngIf="attributes[8].display" (click)="displayField(attributes[8])" name="logo-linkedin" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[8].display" (click)="displayField(attributes[8])" color="medium" name="logo-linkedin" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[8].linkedin" placeholder="LinkedIn" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-icon *ngIf="facebook.display" (click)="displayField('facebook')" name="logo-facebook" slot="start"></ion-icon>
-      <ion-icon *ngIf="!facebook.display" (click)="displayField('facebook')" color="medium" name="logo-facebook" slot="start"></ion-icon>
-      <ion-input [(ngModel)]="facebook.value" placeholder="Facebook"></ion-input>
+      <ion-icon *ngIf="attributes[9].display" (click)="displayField(attributes[9])" name="logo-facebook" slot="start"></ion-icon>
+      <ion-icon *ngIf="!attributes[9].display" (click)="displayField(attributes[9])" color="medium" name="logo-facebook" slot="start"></ion-icon>
+      <ion-input [(ngModel)]="attributes[9].facebook" placeholder="Facebook" disabled="{{modalType === 'createCard'}}"></ion-input>
     </ion-item>
   </ion-list>
 

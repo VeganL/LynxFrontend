@@ -21,6 +21,8 @@ import { ProfileService} from "./services/profile/profile.service";
 // Plugins
 import { HTTP } from '@ionic-native/http/ngx';
 import { QRCodeModule } from 'angular2-qrcode';
+import {Camera} from "@ionic-native/camera/ngx";
+import {WebView} from "@ionic-native/ionic-webview/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +42,8 @@ import { QRCodeModule } from 'angular2-qrcode';
     UserDataService,
     ProfileService,
     HTTP,
+    Camera,
+    WebView,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
