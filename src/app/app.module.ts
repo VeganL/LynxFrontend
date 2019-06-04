@@ -16,11 +16,13 @@ import {QrGeneratorPageModule} from './modals/qr-generator/qr-generator.module';
 // Services
 import { AuthServiceService } from './services/auth-service/auth-service.service';
 import { UserDataService} from './services/user-data/user-data.service';
-import { ProfileService} from "./services/profile/profile.service";
+import { ProfileService} from './services/profile/profile.service';
 
 // Plugins
 import { HTTP } from '@ionic-native/http/ngx';
 import { QRCodeModule } from 'angular2-qrcode';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +42,7 @@ import { QRCodeModule } from 'angular2-qrcode';
     UserDataService,
     ProfileService,
     HTTP,
+    QRScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
